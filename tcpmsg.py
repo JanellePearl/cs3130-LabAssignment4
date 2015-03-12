@@ -165,7 +165,6 @@ def db_quit():
     exit(0)
 
 #used to handle the data being sent from the server to the client
-#still does not print entire database
 def recv_all(sock):
     
     commsg = ''
@@ -270,15 +269,15 @@ def server(port):
                 
         #display the contents of the database good=+610     
         elif '+830' in message:
-            sc.sendall(b'+610:.')
-            sc.sendall(b'\n.')
+            sc.sendall(b'+610:')
+            sc.sendall(b'\n')
             for k in d.keys():
                 send = "ID:" + k + " Name:" + d[k][0] +" "+d[k][1] + " Department:" + d[k][2] 
-                send = send + term
-                print(send)
+                send = send 
                 send = send.encode('ascii')
                 sc.sendall(send)
-                sc.sendall(b'\n.')
+                sc.sendall(b'\n')
+            sc.sendall(term.encode('ascii'))
                 
             
 
